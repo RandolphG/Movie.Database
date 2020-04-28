@@ -1,0 +1,65 @@
+{
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.0.6",
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "latest",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.1.4",
+    "classnames": "^2.2.6",
+    "cross-env": "^7.0.2",
+    "electron-is-dev": "^1.2.0",
+    "framer-motion": "^1.10.3",
+    "gesture": "^0.1.0",
+    "gsap": "^3.2.6",
+    "jquery": "^3.5.0",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.13.1",
+    "ramda": "^0.27.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "react-spring": "^8.0.27",
+    "react-transition-group": "^4.3.0",
+    "react-use": "^14.2.0",
+    "react-use-gesture": "^7.0.15",
+    "velocityjs": "^2.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "electron": "^8.2.1",
+    "electron-builder": "^22.4.1",
+    "electron-devtools-installer": "^2.2.4",
+    "electron-react-devtools": "^0.5.3",
+    "prettier": "^2.0.4",
+    "wait-on": "^4.0.1"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "main": "public/electron.js",
+  "name": "the-movie-database-app",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\""
+  },
+  "version": "0.1.0"
+}
