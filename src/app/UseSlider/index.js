@@ -171,6 +171,7 @@ const useIsDrag = () => {
  * @returns {{ref: *, set: ForwardedProps<React.CSSProperties>, map: (function(*): *), getStartData: (function(*): {sc: number, boxShadow: string, display: string, pointerEvents: string, x: number, width: string, y: number, position: string, transformOrigin: string, opacity: number, height: string})}}
  */
 export const useSlider = ({ data, onChange, ref, onClick }) => {
+  console.log(`array length : `, data && data.length);
   const totalItems = data.length;
   const drag = useIsDrag();
   const getStartData = (i) => {

@@ -27,7 +27,6 @@ export const Header = ({ data, index, as: Component }) => {
       return { opacity: 0, transform: `translate3d(0, ${100 * dir}%, 0)` };
     },
   });
-
   return (
     <div className="header">
       {transitions.map(({ item, props, key }) => {

@@ -8,6 +8,9 @@ import React from "react";
  */
 export const Address = ({ data }) => (
   <div>
-    <address className="header__address">PLACE</address>
+    <address className="header__address">
+      <i className="fas fa-map-marker-alt" />
+      VOTE {data && data.vote_average.toString()}
+    </address>
   </div>
 );

@@ -8,15 +8,27 @@ const R = require("ramda");
  * @returns {*}
  * @constructor
  */
-export const Slider = ({ slider }) => {
+export const Slider = ({ slider, data }) => {
+  const imgUri = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+  console.log(data.id);
   const { map, ref } = slider;
-
   return (
     <div className="slider" ref={ref}>
       <div className="slider__container">
         {map(({ root, inner, onClick, item, itemRef }) => {
           const videoSrc = R.path(["video"])(item);
-          const videoPoster = R.path(["poster"])(item);
+          const videoPoster = R.path(["poster_path"])(item);
+          {
+            console.log(
+              imgUri,
+              `\nitem : \n`,
+              item && item,
+              ` \nitemRef : \n`,
+              itemRef && itemRef,
+              ` \nref : \n`,
+              ref && ref
+            );
+          }
           return (
             <animated.div
               ref={itemRef}
@@ -28,7 +40,7 @@ export const Slider = ({ slider }) => {
                 className="slider__inner"
                 {...inner}
                 style={{
-                  backgroundImage: `url(${R.path(["image"])(item)})`,
+                  backgroundImage: `url(${imgUri})`,
                   ...inner,
                 }}
               >

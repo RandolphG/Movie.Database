@@ -19,23 +19,21 @@ Container.defaultProps = {
 };
 
 /**
- *
+ * the main component
  * @returns {*}
  * @constructor
  */
 const Screen = () => {
-  const movies = useSelector((state) => state.movies.moviesinfo);
-  const results = useSelector((state) => state.movies.moviesinfo.results);
+  const results = useSelector((state) => state.movies.results);
   const [current, setCurrent] = useState(0);
   const [isOpened, setIsOpened] = useState(false);
   const ref = useRef();
-
   const dispatch = useDispatch();
   const getData = () => dispatch(fetchMovie);
-  const data = pages[current];
+  const data = results[current];
 
   const slider = useSlider({
-    data: data,
+    data: results,
     onChange: setCurrent,
     ref,
     onClick: (set, index, event) => {
@@ -44,7 +42,6 @@ const Screen = () => {
       // window size
       const ws = window.innerWidth / el.offsetWidth;
       const hs = window.innerHeight / el.offsetHeight;
-
       set((i) => {
         if (index === i) {
           setIsOpened(true);
@@ -83,7 +80,7 @@ const Screen = () => {
     getData();
   }, []);
 
-  if (!movies) {
+  if (!results) {
     return <div>Loading...</div>;
   }
 
@@ -102,11 +99,11 @@ const Screen = () => {
             .interpolate((x) => `translate3d(0, ${x}%, 0`),
         }}
       >
-        <Button className="nav-bar__back"></Button>
+        <Button className="nav-bar__back">{data.title}</Button>
       </Container>
       <Header data={data} index={current} as={HeaderItem} />
       <div className="events-screen__slider">
-        <Slider slider={slider} />
+        <Slider data={data} slider={slider} />
       </div>
       <ScreenModal onClose={onCloseClick} isOpen={isOpened}>
         <ScreenModalContent key={data.id} data={data} />

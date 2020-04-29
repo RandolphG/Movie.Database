@@ -18,7 +18,7 @@ export const ScreenModalContent = ({ data }) => (
       <HeaderDate data={data} />
     </Container>
     <Container>
-      <p>{data.text}</p>
+      <p>{data.overview}</p>
     </Container>
   </div>
 );

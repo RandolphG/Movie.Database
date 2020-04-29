@@ -199,7 +199,7 @@ code {
 }
 
 .header__title {
-  //background: lightseagreen;
+  background: lightseagreen;
   font-size: 28px;
   font-weight: 700;
   margin-top: 0;
@@ -221,7 +221,7 @@ code {
 }
 
 .header__address {
-  background: lightskyblue;
+  background: #8e44ad;
   font-size: 15px;
   font-weight: 600;
   display: flex;
@@ -234,7 +234,7 @@ code {
 }
 
 .header__date {
-  background: #d8d8d8;
+  background: #00ffc8;
   font-size: 15px;
   font-weight: 600;
 }
@@ -288,16 +288,18 @@ code {
   }
 }
 
-.nav-bar {}
+.nav-bar {
+  background: blue;
+}
 
 .nav-bar__back {
+  color: #1E2235;
   padding-left: 0;
   font-size: 18px;
   font-weight: 700;
   line-height: 1;
   display: flex;
   align-items: baseline;
-
   .fas {
     margin-right: 20px;
   }
