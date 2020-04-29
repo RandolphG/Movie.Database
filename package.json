@@ -31,12 +31,16 @@
     "ramda": "^0.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.1.0-rc.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "react-spring": "^8.0.27",
     "react-transition-group": "^4.3.0",
     "react-use": "^14.2.0",
     "react-use-gesture": "^7.0.15",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "velocityjs": "^2.0.0"
   },
   "devDependencies": {

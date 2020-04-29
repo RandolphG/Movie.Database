@@ -1,6 +1,5 @@
 import { animated } from "react-spring";
 import React from "react";
-
 const R = require("ramda");
 
 /**
@@ -18,7 +17,6 @@ export const Slider = ({ slider }) => {
         {map(({ root, inner, onClick, item, itemRef }) => {
           const videoSrc = R.path(["video"])(item);
           const videoPoster = R.path(["poster"])(item);
-
           return (
             <animated.div
               ref={itemRef}

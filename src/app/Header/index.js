@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { animated, useTransition } from "react-spring";
 
 /**
@@ -10,8 +10,9 @@ import { animated, useTransition } from "react-spring";
  * @constructor
  */
 export const Header = ({ data, index, as: Component }) => {
-  const [prev] = React.useState({ index });
+  const [prev] = useState({ index });
 
+  // transitions
   const transitions = useTransition(index, (p) => p, {
     from: (newIdx) => {
       const dir = newIdx - prev.index;

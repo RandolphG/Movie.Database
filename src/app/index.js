@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./index.scss";
 import { animated, useSpring } from "react-spring";
 import { pages } from "./_data";
-
+import { fetchMovie } from "./_redux/actions/fetchData";
+import { useDispatch, useSelector } from "react-redux";
 import { Container } from "./Container";
 import { useSlider } from "./UseSlider";
 import { Button } from "./Button";
@@ -12,9 +13,6 @@ import { Slider } from "./Slider";
 import { ScreenModal } from "./ScreenModal";
 import { ScreenModalContent } from "./ScreenModalContent";
 import { Footer } from "./Footer";
-
-// import { LikeBtn } from "./LikeBtn";
-// import { Text } from "./Text";
 
 Container.defaultProps = {
   as: "div",
@@ -26,24 +24,30 @@ Container.defaultProps = {
  * @constructor
  */
 const Screen = () => {
-  const [current, setCurrent] = React.useState(0);
-  const [isOpened, setIsOpened] = React.useState(false);
-  const ref = React.useRef();
+  const movies = useSelector((state) => state.movies.moviesinfo);
+  const results = useSelector((state) => state.movies.moviesinfo.results);
+  const [current, setCurrent] = useState(0);
+  const [isOpened, setIsOpened] = useState(false);
+  const ref = useRef();
+
+  const dispatch = useDispatch();
+  const getData = () => dispatch(fetchMovie);
+  const data = pages[current];
+
   const slider = useSlider({
-    data: pages,
+    data: data,
     onChange: setCurrent,
     ref,
     onClick: (set, index, event) => {
       const el = event.currentTarget;
       const rect = el.getBoundingClientRect();
-
+      // window size
       const ws = window.innerWidth / el.offsetWidth;
       const hs = window.innerHeight / el.offsetHeight;
 
       set((i) => {
         if (index === i) {
           setIsOpened(true);
-
           return {
             x: window.innerWidth / 2 - rect.width / 2 - rect.x,
             y: window.innerHeight / 2 - rect.height / 2 - rect.y,
@@ -56,6 +60,7 @@ const Screen = () => {
     },
   });
 
+  // close modal
   const onCloseClick = () => {
     slider.set((i) => {
       if (i === current) {
@@ -67,17 +72,20 @@ const Screen = () => {
       }
     });
   };
-
-  /**
-   *
-   * @type {AnimatedValue<ForwardedProps<OverwriteKeys<object, React.CSSProperties>>>}
-   */
+  // bool for closed and open
   const mainSpring = useSpring({
     from: { x: 0 },
     x: !isOpened ? 1 : 0,
   });
 
-  const data = pages[current];
+  // lifecycle hook
+  useEffect(() => {
+    getData();
+  }, []);
+
+  if (!movies) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <section className="events-screen">
@@ -94,11 +102,9 @@ const Screen = () => {
             .interpolate((x) => `translate3d(0, ${x}%, 0`),
         }}
       >
-        <Button className="nav-bar__back">
-          <i className="fas fa-long-arrow-alt-left" />
-        </Button>
+        <Button className="nav-bar__back"></Button>
       </Container>
-      <Header data={pages} index={current} as={HeaderItem} />
+      <Header data={data} index={current} as={HeaderItem} />
       <div className="events-screen__slider">
         <Slider slider={slider} />
       </div>

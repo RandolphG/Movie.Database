@@ -25,7 +25,6 @@ const onNext = (
   if (!isNextTrigger || down) {
     return;
   }
-
   if (index === i) {
     return {
       ...getStartData(i),
@@ -41,7 +40,6 @@ const onNext = (
       },
     };
   }
-
   if (i - index > 0) {
     const currentIndex = i - index - 1;
     return {
@@ -75,22 +73,18 @@ const onPrev = (
 
   if (index > 0 && i - index >= -1 && isPrevTrigger) {
     const currentIndex = i - index + 1;
-
     let indexConf = {
       onStart: undefined,
       onRest: undefined,
     };
-
     if (index === i) {
       indexConf.onStart = () => {
         onChange(index - 1);
       };
-
       indexConf.onRest = () => {
         drag.cancel();
       };
     }
-
     return {
       ...getStartData(currentIndex),
       immediate: false,
@@ -125,7 +119,6 @@ const isNotDown = ({ down }, { drag }) => {
   if (down) {
     return;
   }
-
   return {
     x: 0,
     immediate: false,
@@ -156,16 +149,13 @@ const useIsDrag = () => {
   const [state] = React.useState({});
   const setIsDrag = (movement) => {
     const xMod = Math.abs(movement[0]);
-
     if (xMod > 2) {
       state.isDrag = true;
     }
   };
-
   const cancel = () => {
     state.isDrag = false;
   };
-
   return {
     state,
     setIsDrag,
@@ -186,7 +176,6 @@ export const useSlider = ({ data, onChange, ref, onClick }) => {
   const getStartData = (i) => {
     const isVisible = i <= MAX_COUNT - 1;
     const multiplier = i === 0 ? 1 : 1.1;
-
     return {
       x: isVisible ? (i * 28) / multiplier : (MAX_COUNT - 1) * 28,
       y: 0,
@@ -225,7 +214,6 @@ export const useSlider = ({ data, onChange, ref, onClick }) => {
       } = state;
       const isNextTrigger = movement[0] <= -100 && index !== totalItems - 1;
       const isPrevTrigger = movement[0] >= 24;
-
       const data = {
         isNextTrigger,
         isPrevTrigger,
@@ -285,7 +273,6 @@ export const useSlider = ({ data, onChange, ref, onClick }) => {
           },
           ...bind(i),
         };
-
         const inner = {
           style: {
             boxShadow,
