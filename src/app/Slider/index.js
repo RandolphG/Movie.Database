@@ -5,30 +5,20 @@ const R = require("ramda");
 /**
  *
  * @param slider
+ * @param data
  * @returns {*}
  * @constructor
  */
-export const Slider = ({ slider, data }) => {
-  const imgUri = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
-  console.log(data.id);
+export const Slider = ({ slider }) => {
+  const imgUri = `https://image.tmdb.org/t/p/w500`;
   const { map, ref } = slider;
   return (
     <div className="slider" ref={ref}>
       <div className="slider__container">
         {map(({ root, inner, onClick, item, itemRef }) => {
           const videoSrc = R.path(["video"])(item);
-          const videoPoster = R.path(["poster_path"])(item);
-          {
-            console.log(
-              imgUri,
-              `\nitem : \n`,
-              item && item,
-              ` \nitemRef : \n`,
-              itemRef && itemRef,
-              ` \nref : \n`,
-              ref && ref
-            );
-          }
+          const videoPoster = `${imgUri}${R.path(["poster_path"])(item)}`;
+
           return (
             <animated.div
               ref={itemRef}
@@ -36,11 +26,14 @@ export const Slider = ({ slider, data }) => {
               onClick={onClick}
               {...root}
             >
+              <div style={{ background: "white" }} />
               <animated.div
                 className="slider__inner"
                 {...inner}
                 style={{
-                  backgroundImage: `url(${imgUri})`,
+                  backgroundImage: `url(${imgUri}${R.path(["poster_path"])(
+                    item
+                  )})`,
                   ...inner,
                 }}
               >

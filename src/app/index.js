@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./index.scss";
 import { animated, useSpring } from "react-spring";
-import { pages } from "./_data";
 import { fetchMovie } from "./_redux/actions/fetchData";
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "./Container";
@@ -13,6 +12,7 @@ import { Slider } from "./Slider";
 import { ScreenModal } from "./ScreenModal";
 import { ScreenModalContent } from "./ScreenModalContent";
 import { Footer } from "./Footer";
+// import Cube from "./_addons/cube";
 
 Container.defaultProps = {
   as: "div",
@@ -28,10 +28,10 @@ const Screen = () => {
   const [current, setCurrent] = useState(0);
   const [isOpened, setIsOpened] = useState(false);
   const ref = useRef();
+  // redux
   const dispatch = useDispatch();
   const getData = () => dispatch(fetchMovie);
-  const data = results[current];
-
+  // slider
   const slider = useSlider({
     data: results,
     onChange: setCurrent,
@@ -84,13 +84,16 @@ const Screen = () => {
     return <div>Loading...</div>;
   }
 
+  const data = results[current];
+  console.log(current, results[current]);
+
   return (
     <section className="events-screen">
       <Container
         as={animated.div}
         className="nav-bar"
         style={{
-          opacity: mainSpring.x.interpolate({ range: [0, 1], output: [0, 1] }),
+          opacity: mainSpring.x.interpolate({ range: [1, 1], output: [1, 1] }),
           transform: mainSpring.x
             .interpolate({
               range: [0, 1],
@@ -99,9 +102,9 @@ const Screen = () => {
             .interpolate((x) => `translate3d(0, ${x}%, 0`),
         }}
       >
-        <Button className="nav-bar__back">{data.title}</Button>
+        <Button className="nav-bar__back">BACK</Button>
       </Container>
-      <Header data={data} index={current} as={HeaderItem} />
+      <Header data={results} index={current} as={HeaderItem} />
       <div className="events-screen__slider">
         <Slider data={data} slider={slider} />
       </div>

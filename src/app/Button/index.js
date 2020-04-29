@@ -3,7 +3,7 @@ import classNames from "classnames";
 const cx = classNames;
 
 /**
- *
+ * button component
  * @param children
  * @param className
  * @param rest

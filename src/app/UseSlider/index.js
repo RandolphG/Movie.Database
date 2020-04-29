@@ -1,6 +1,6 @@
 import { interpolate, useSprings } from "react-spring";
 import { useGesture } from "react-use-gesture";
-import React from "react";
+import { useState } from "react";
 const R = require("ramda");
 
 const MAX_COUNT = 3;
@@ -146,7 +146,7 @@ const onDefault = ({ movement }) => ({
  * @returns {{cancel: cancel, state: {}, setIsDrag: setIsDrag}}
  */
 const useIsDrag = () => {
-  const [state] = React.useState({});
+  const [state] = useState({});
   const setIsDrag = (movement) => {
     const xMod = Math.abs(movement[0]);
     if (xMod > 2) {
@@ -162,6 +162,7 @@ const useIsDrag = () => {
     cancel,
   };
 };
+
 /**
  *
  * @param data
@@ -171,7 +172,6 @@ const useIsDrag = () => {
  * @returns {{ref: *, set: ForwardedProps<React.CSSProperties>, map: (function(*): *), getStartData: (function(*): {sc: number, boxShadow: string, display: string, pointerEvents: string, x: number, width: string, y: number, position: string, transformOrigin: string, opacity: number, height: string})}}
  */
 export const useSlider = ({ data, onChange, ref, onClick }) => {
-  console.log(`array length : `, data && data.length);
   const totalItems = data.length;
   const drag = useIsDrag();
   const getStartData = (i) => {
@@ -214,7 +214,7 @@ export const useSlider = ({ data, onChange, ref, onClick }) => {
         cancel,
       } = state;
       const isNextTrigger = movement[0] <= -100 && index !== totalItems - 1;
-      const isPrevTrigger = movement[0] >= 24;
+      const isPrevTrigger = movement[0] >= 54;
       const data = {
         isNextTrigger,
         isPrevTrigger,
@@ -233,13 +233,12 @@ export const useSlider = ({ data, onChange, ref, onClick }) => {
       }
 
       set((i) => {
-        const action = R.find((fn) => fn(state, data, i), [
-          onNext,
-          onPrev,
-          isNotTarget,
-          isNotDown,
-          onDefault,
-        ]);
+        const action = R.find(
+          (fn) => {
+            return fn(state, data, i);
+          },
+          [onNext, onPrev, isNotTarget, isNotDown, onDefault]
+        );
 
         if (action) {
           return action(state, data, i);
@@ -259,6 +258,7 @@ export const useSlider = ({ data, onChange, ref, onClick }) => {
         { x, y, display, sc, opacity, pointerEvents, boxShadow, ...rest },
         i
       ) => {
+        // change the Z index of img
         const root = {
           key: i,
           style: {
@@ -282,12 +282,12 @@ export const useSlider = ({ data, onChange, ref, onClick }) => {
 
         const onClickHandler = (...args) => {
           if (drag.state.isDrag) {
+            console.log("onClickHandler : dragging : ", drag.state.isDrag);
             return;
           }
 
           onClick(set, i, ...args);
         };
-
         return component({
           root,
           inner,
@@ -298,7 +298,6 @@ export const useSlider = ({ data, onChange, ref, onClick }) => {
       }
     );
   };
-
   return {
     map,
     ref,

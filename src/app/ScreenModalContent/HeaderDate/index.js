@@ -7,5 +7,5 @@ import React from "react";
  * @constructor
  */
 export const HeaderDate = ({ data }) => (
-  <time className="header__date">{data && data.release_date.toString()}</time>
+  <time className="header__date">{data.release_date}</time>
 );

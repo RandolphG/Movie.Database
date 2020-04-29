@@ -24,7 +24,7 @@ export const ScreenModal = ({ onClose, isOpen, children }) => {
     from: { x: 0 },
     x: isOpen ? 1 : 0,
     pointerEvents: isOpen ? "" : "none",
-    config: { duration: 400 },
+    config: { duration: 700 },
   });
 
   return (

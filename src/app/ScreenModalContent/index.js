@@ -1,7 +1,7 @@
 import { Container } from "../Container";
 import React from "react";
 import { HeaderTitle } from "./HeaderTitle";
-import { Address } from "./Address";
+import { Subtitle } from "./Subtitle";
 import { HeaderDate } from "./HeaderDate";
 
 /**
@@ -14,7 +14,7 @@ export const ScreenModalContent = ({ data }) => (
   <div>
     <Container className="screen-modal__content">
       <HeaderTitle data={data} />
-      <Address data={data} />
+      <Subtitle data={data} />
       <HeaderDate data={data} />
     </Container>
     <Container>

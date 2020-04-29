@@ -1,6 +1,5 @@
 import { animated } from "react-spring";
 import React from "react";
-
 /**
  *
  * @param mainSpring

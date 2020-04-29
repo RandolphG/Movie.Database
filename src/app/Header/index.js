@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { animated, useTransition } from "react-spring";
 
 /**
- *
+ * header component for transitions
  * @param data
  * @param index
  * @param Component

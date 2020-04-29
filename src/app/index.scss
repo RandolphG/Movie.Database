@@ -1,18 +1,27 @@
-
-
 * {
   box-sizing: border-box;
 }
+
+//noinspection CssInvalidFunction
 html,
 body {
-  background-color: #F8F8F8;
+  background-color:darken(#252B37, 4%);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .3);
+  //background: rgb(150, 150, 150);
+ /* background-image: -moz-radial-gradient(center, ellipse, cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(150, 150, 150, 1)), color-stop(100%, rgba(89, 89, 89, 1)));
+  background-image: -webkit-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+  background: radial-gradient(ellipse at center, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#969696', endColorstr = '#595959', GradientType = 1);*/
+  font-family: monospace;
+  font-size: 1rem;
   overscroll-behavior-y: contain;
   overflow: hidden;
   margin: 0;
   padding: 0;
   user-select: none;
-  font-family: avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto,
-  segoe ui, arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -26,37 +35,40 @@ button {
   line-height: 1.2;
   white-space: nowrap;
   text-decoration: none;
-  font-family: avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto,
-  segoe ui, arial, sans-serif;
+  font-family: "Fira Code Medium", serif;
   padding: 0;
   margin: 0;
   cursor: pointer;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
-}
-
+//noinspection CssInvalidFunction
 .app-layout {
-  padding-top: 16px;
-  background-color: white;
-  box-shadow: 0 0 60px rgba(0, 0, 0, .2);
+  //background: rgb(150, 150, 150);
+  background-color:darken(#252B37, 4%);
+  /*
+  background-image: -moz-radial-gradient(center, ellipse, cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(150, 150, 150, 1)), color-stop(100%, rgba(89, 89, 89, 1)));
+  background-image: -webkit-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+  background: -o-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+  background: radial-gradient(ellipse at center, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#969696', endColorstr = '#595959', GradientType = 1);
+  */
+  font-family: monospace;
+  box-shadow: 0 0 60px rgba(0, 0, 0, .1);
   width: 100%;
   height: 100%;
   max-width: 550px;
-  //margin-top: auto;
   position: absolute;
   overflow: hidden;
   margin: auto;
   display: flex;
   flex-direction: column;
-  //padding-top: calc(var(--container-padding) / 1.5);
+  padding-top: calc(var(--container-padding) / 1.5);
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  .animatedText
   &__system-bar {
     position: relative;
     z-index: 100500;
@@ -67,7 +79,7 @@ code {
 }
 
 .container {
-  background: #00ffc8;
+  background-color:darken(#252B37, 4%);
   padding: 0 var(--container-padding);
 }
 
@@ -81,6 +93,7 @@ code {
 }
 
 .slider__item {
+  //background: #c0392b;
   position: absolute;
   top: 0;
   left: 0;
@@ -90,6 +103,36 @@ code {
   will-change: transform, opacity;
 }
 
+/* MIXINS*/
+@mixin backlight($x, $y, $spread, $size, $colorA, $colorB, $duration) {
+  &:after {
+    position: absolute;
+    content: "";
+    top: $y;
+    left: $x;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale($size);
+    -webkit-filter: blur($spread);
+    -moz-filter: blur($spread);
+    -ms-filter: blur($spread);
+    filter: blur($spread);
+    background: linear-gradient(270deg, $colorA, $colorB);
+    background-size: 200% 200%;
+    animation: animateGlow $duration ease infinite;
+
+    @keyframes animateGlow {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+  }
+}
+
+  /* -- IMAGE BACKGROUND --*/
 .slider__inner {
   background-size: cover;
   background-repeat: no-repeat;
@@ -97,10 +140,9 @@ code {
   width: 100%;
   height: 100%;
   will-change: box-shadow;
-  border-radius: 20px;
+  border-radius: 10px;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
-
   > video {
     object-fit: cover;
     width: 100%;
@@ -109,12 +151,8 @@ code {
 }
 
 .screen-modal__scroll {
-  background: #91a7ff;
   height: 100%;
-
-
   will-change: transform, opacity;
-
   > div {
     height: 100%;
     overflow: auto;
@@ -122,86 +160,78 @@ code {
 }
 
 .screen-modal-root {
-  //background: #91a7ff;
   --container-padding2: calc(var(--container-padding) / 1.5);
   --container-padding3: calc(var(--container-padding) / 2);
   --margin: calc(var(--container-padding) / 4);
-
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10;
-
+  z-index: 1;
   > .container {
     will-change: transform, opacity;
   }
-
   .container {
     padding: 0 var(--container-padding2);
   }
 }
 
 .screen-modal {
-  background-color: khaki;
   position: absolute;
   height: 50%;
   width: 100%;
   left: 0;
   bottom: 0;
   will-change: transform;
-
   .container {
     padding: var(--container-padding3) var(--container-padding2);
   }
-
   .screen-modal__content {
     padding-top: var(--container-padding);
-    border-bottom: 1px solid #d8d8d8;
-
+    border-bottom: 2px solid #d8d8d8;
     .header__title {
       margin-bottom: var(--margin);
       padding-right: 0;
     }
-
-    .header__address {
+    .header__subtitle {
       margin-bottom: var(--margin);
     }
   }
-
   p {
     margin-top: 0;
   }
 }
-
+// -- HEADER CONTAINER --//
 .header {
-  background: lightpink;
+  justify-content: center;
   position: relative;
   height: 60px;
   overflow: hidden;
-  margin: 20px 0;
+  margin: 15px 0;
   will-change: transform, opacity;
-
   > div {
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
     position: absolute;
     will-change: transform, opacity;
     top: 0;
     left: 0;
-    height: 100%;
     width: 100%;
   }
 }
 
 .header__item {
+  font-family: monospace;
   background: #5c7cfa;
   width: 100%;
 }
 
+// -- LEFT SIDE TOP --//
 .header__title {
-  background: lightseagreen;
-  font-size: 28px;
-  font-weight: 700;
+  background: #00ffc8;
+  font-size: 2rem;
   margin-top: 0;
   margin-bottom: 0;
   line-height: 1;
@@ -209,9 +239,9 @@ code {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-right: 20px;
 }
 
+  // -- RIGHT SIDE TOP --//
 .header__top {
   background: lightsteelblue;
   display: flex;
@@ -220,27 +250,25 @@ code {
   margin-bottom: 10px;
 }
 
-.header__address {
-  background: #8e44ad;
-  font-size: 15px;
-  font-weight: 600;
+
+// -- BOTTOM ROW OF HEADER --//
+.header__subtitle {
+  font-family: monospace;
+  font-size: 1.5rem;
+  line-height: 10px;
+  font-weight: 500;
   display: flex;
   align-items: baseline;
-  font-style: normal;
-
-  .fas {
-    margin-right: 10px;
-  }
 }
-
+// -- ??? --//
 .header__date {
-  background: #00ffc8;
-  font-size: 15px;
+  font-family: monospace;
+  font-size: 2rem;
   font-weight: 600;
+  padding-right: 16px;
 }
 
 .footer {
-  background: lightskyblue;
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
@@ -260,75 +288,35 @@ code {
 
 .events-screen__slider {
   position: relative;
-  // height: calc(80% - 75px);
+  height: calc(80% - 75px);
   margin-bottom: 25px;
-  // height: 62%;
   width: 78%;
   flex: 1;
-
   .slider {
     padding-left: var(--container-padding);
   }
 }
-
-.burger-button {
-  font-size: 25px;
+// -- LEFT BOTTOM BTN --//
+.left-button {
+  padding-left: 16px;
+  font-size: 1rem;
 }
-
-.event-button {
-  font-size: 16px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  line-height: 1;
-
-  .fas {
-    font-size: 12px;
-    margin-right: 5px;
-  }
+// -- RIGHT BOTTOM BTN --//
+.right-button {
+  font-size: 1rem;
+  padding-right: 16px;
 }
-
+// -- TOP NAV BAR --//
 .nav-bar {
-  background: blue;
+  font-size: 2rem;
 }
-
+// -- TOP NAV & BUTTON --//
 .nav-bar__back {
-  color: #1E2235;
-  padding-left: 0;
-  font-size: 18px;
-  font-weight: 700;
+  background: #1da1f2;
+  color: white;
+  padding-left: 16px;
+  font-size: 1rem;
   line-height: 1;
-  display: flex;
-  align-items: baseline;
-  .fas {
-    margin-right: 20px;
-  }
-}
-
-.credits {
-  background: cyan;
-  font-size: .8em;
-  margin-bottom: 1em;
-  text-align: center;
-
-
-  a {
-    font-weight: 600;
-    color: #91a7ff;
-    text-decoration: none;
-
-    &:hover {
-      color: #5c7cfa;
-      text-decoration: underline;
-    }
-  }
-}
-
-.love {
-  background: purple;
-  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/42764/heart-smil.svg);
-  display: inline-block;
-  height: 16px;
-  vertical-align: middle;
-  width: 16px;
+  //display: flex;
+  //align-items: baseline;
 }

@@ -6,6 +6,6 @@ import React from "react";
  * @returns {*}
  * @constructor
  */
-export const HeaderTitle = ({ data }) => (
-  <h1 className="header__title">{data && data.original_title}</h1>
-);
+export const HeaderTitle = ({ data }) => {
+  return <h1 className="header__title">{data.title}</h1>;
+};

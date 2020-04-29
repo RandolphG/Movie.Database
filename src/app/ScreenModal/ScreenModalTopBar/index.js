@@ -13,7 +13,7 @@ export const ScreenModalTopBar = ({ mainSpring, children }) => (
   <Container
     as={animated.div}
     style={{
-      color: "white",
+      color: "black",
       opacity: mainSpring.x.interpolate({ range: [0, 1], output: [0, 1] }),
       transform: mainSpring.x
         .interpolate({
