@@ -37,16 +37,15 @@ button {
   cursor: pointer; }
 
 .app-layout {
+  border-radius: 6px;
   background-color: #1d212b;
-  /*
-  background-image: -moz-radial-gradient(center, ellipse, cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(150, 150, 150, 1)), color-stop(100%, rgba(89, 89, 89, 1)));
-  background-image: -webkit-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
-  background: -o-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
-  background: -ms-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
-  background: radial-gradient(ellipse at center, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
+  background-image: -moz-radial-gradient(center, ellipse, cover, #969696 0%, #595959 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #969696), color-stop(100%, #595959));
+  background-image: -webkit-radial-gradient(center, ellipse cover, #969696 0%, #595959 100%);
+  background: -o-radial-gradient(center, ellipse cover, #969696 0%, #595959 100%);
+  background: -ms-radial-gradient(center, ellipse cover, #969696 0%, #595959 100%);
+  background: radial-gradient(ellipse at center, #969696 0%, #595959 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#969696', endColorstr = '#595959', GradientType = 1);
-  */
   font-family: monospace;
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -127,6 +126,42 @@ button {
   .screen-modal-root .container {
     padding: 0 var(--container-padding2); }
 
+#box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 200px;
+  color: white;
+  font-family: 'Raleway';
+  font-size: 2.5rem; }
+
+.gradient-border {
+  --borderWidth: 3px;
+  background: #1D1F20;
+  position: relative;
+  border-radius: var(--borderWidth); }
+
+.gradient-border:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%; }
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%; }
+  50% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0% 50%; } }
 .screen-modal {
   position: absolute;
   height: 50%;
@@ -148,7 +183,6 @@ button {
     margin-top: 0; }
 
 .header {
-  justify-content: center;
   position: relative;
   height: 60px;
   overflow: hidden;
@@ -166,22 +200,18 @@ button {
 
 .header__item {
   font-family: monospace;
-  background: #5c7cfa;
   width: 100%; }
 
 .header__title {
-  background: #00ffc8;
   font-size: 2rem;
   margin-top: 0;
   margin-bottom: 0;
   line-height: 1;
   flex: 1;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis; }
+  overflow: hidden; }
 
 .header__top {
-  background: lightsteelblue;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -237,7 +267,6 @@ button {
   font-size: 2rem; }
 
 .nav-bar__back {
-  background: #1da1f2;
   color: white;
   padding-left: 16px;
   font-size: 1rem;

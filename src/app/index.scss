@@ -43,9 +43,9 @@ button {
 
 //noinspection CssInvalidFunction
 .app-layout {
+  border-radius: 6px;
   //background: rgb(150, 150, 150);
   background-color:darken(#252B37, 4%);
-  /*
   background-image: -moz-radial-gradient(center, ellipse, cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
   background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(150, 150, 150, 1)), color-stop(100%, rgba(89, 89, 89, 1)));
   background-image: -webkit-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
@@ -53,7 +53,6 @@ button {
   background: -ms-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
   background: radial-gradient(ellipse at center, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#969696', endColorstr = '#595959', GradientType = 1);
-  */
   font-family: monospace;
   box-shadow: 0 0 60px rgba(0, 0, 0, .1);
   width: 100%;
@@ -79,6 +78,7 @@ button {
 }
 
 .container {
+
   background-color:darken(#252B37, 4%);
   padding: 0 var(--container-padding);
 }
@@ -150,7 +150,9 @@ button {
   }
 }
 
+
 .screen-modal__scroll {
+  //background: #00ffc8;
   height: 100%;
   will-change: transform, opacity;
   > div {
@@ -160,6 +162,7 @@ button {
 }
 
 .screen-modal-root {
+  //background: ;
   --container-padding2: calc(var(--container-padding) / 1.5);
   --container-padding3: calc(var(--container-padding) / 2);
   --margin: calc(var(--container-padding) / 4);
@@ -174,6 +177,49 @@ button {
   }
   .container {
     padding: 0 var(--container-padding2);
+  }
+}
+
+#box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 200px;
+  color: white;
+  font-family: 'Raleway';
+  font-size: 2.5rem;
+}
+.gradient-border {
+  --borderWidth: 3px;
+  background: #1D1F20;
+  position: relative;
+  border-radius: var(--borderWidth);
+}
+.gradient-border:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
@@ -204,7 +250,8 @@ button {
 }
 // -- HEADER CONTAINER --//
 .header {
-  justify-content: center;
+  //background: #c0392b;
+  //justify-content: center;
   position: relative;
   height: 60px;
   overflow: hidden;
@@ -224,13 +271,13 @@ button {
 
 .header__item {
   font-family: monospace;
-  background: #5c7cfa;
+  //background: #5c7cfa;
   width: 100%;
 }
 
 // -- LEFT SIDE TOP --//
 .header__title {
-  background: #00ffc8;
+  //background: #00ffc8;
   font-size: 2rem;
   margin-top: 0;
   margin-bottom: 0;
@@ -238,12 +285,11 @@ button {
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  //text-overflow: ellipsis;
 }
 
   // -- RIGHT SIDE TOP --//
 .header__top {
-  background: lightsteelblue;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -312,7 +358,7 @@ button {
 }
 // -- TOP NAV & BUTTON --//
 .nav-bar__back {
-  background: #1da1f2;
+  //background: #1da1f2;
   color: white;
   padding-left: 16px;
   font-size: 1rem;

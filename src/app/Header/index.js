@@ -28,7 +28,7 @@ export const Header = ({ data, index, as: Component }) => {
     },
   });
   return (
-    <div className="header">
+    <div className="header #box">
       {transitions.map(({ item, props, key }) => {
         return (
           <animated.div key={key} style={props}>

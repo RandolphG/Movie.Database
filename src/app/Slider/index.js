@@ -20,15 +20,15 @@ export const Slider = ({ slider }) => {
           const videoPoster = `${imgUri}${R.path(["poster_path"])(item)}`;
 
           return (
+            // <div className="outline #border">
             <animated.div
               ref={itemRef}
               className="slider__item"
               onClick={onClick}
               {...root}
             >
-              <div style={{ background: "white" }} />
               <animated.div
-                className="slider__inner"
+                className="slider__inner animated"
                 {...inner}
                 style={{
                   backgroundImage: `url(${imgUri}${R.path(["poster_path"])(
@@ -37,6 +37,7 @@ export const Slider = ({ slider }) => {
                   ...inner,
                 }}
               >
+                {" "}
                 {videoSrc && (
                   <video
                     src={videoSrc}
@@ -49,6 +50,7 @@ export const Slider = ({ slider }) => {
                 )}
               </animated.div>
             </animated.div>
+            // </div>
           );
         })}
       </div>
