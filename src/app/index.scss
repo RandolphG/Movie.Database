@@ -293,18 +293,18 @@ box {
   margin-left: -250px;
   margin-top: -250px;
   transform-origin: 50% 48%;
-  border-radius: 43%;
-  animation: drift 9000ms infinite linear;
+  border-radius: 33%;
+  animation: drift 15000ms infinite linear;
 }
 
 .wave.-three {
-  animation: drift 9000ms infinite linear;
+  animation: drift 11000ms infinite linear;
 }
 
 .wave.-two {
-  animation: drift 9000ms infinite linear;
+  animation: drift 12000ms infinite linear;
   opacity: .1;
-  background: #a2a2a2;
+  background: magenta;
 }
 
 .box:after {

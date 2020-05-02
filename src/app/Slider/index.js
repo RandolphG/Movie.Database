@@ -1,10 +1,9 @@
 import { animated } from "react-spring";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilm, faStar } from "@fortawesome/free-solid-svg-icons";
 import { faVoteYea } from "@fortawesome/free-solid-svg-icons/faVoteYea";
 import { fetchDetails } from "../_redux/actions/fetchData";
-import { useDispatch } from "react-redux";
 
 const R = require("ramda");
 
@@ -17,34 +16,19 @@ const R = require("ramda");
  */
 export const Slider = ({ slider, data }) => {
   const imgUri = `https://image.tmdb.org/t/p/w500`;
-  const [details, setDetails] = useState("");
   const { map, ref } = slider;
-  const dispatch = useDispatch();
-  const getDetails = (movieID) => dispatch(fetchDetails);
 
   const query = (movieID) => {
-    setDetails(movieID);
-    console.log(`the details are : `, details);
-    getDetails(null, details);
+    console.log(`the movieID is : `, movieID);
+    fetchDetails(movieID);
   };
-
-  useEffect(() => {
-    setDetails(data.id);
-    // console.log(`the details are : `, details);
-  }, [data.id, details]);
 
   return (
     <div className="slider" ref={ref}>
       <div className="slider__container">
         {map(({ root, inner, onClick, item, itemRef }) => {
           return (
-            // <div className="outline #border">
-            <animated.div
-              ref={itemRef}
-              className="slider__item"
-              // onClick={onClick}
-              {...root}
-            >
+            <animated.div ref={itemRef} className="slider__item" {...root}>
               <animated.div className="slider__inner">
                 <div className="carousel-box card">
                   <div
@@ -72,7 +56,11 @@ export const Slider = ({ slider, data }) => {
                         <span>{data.vote_average}</span>
                       </li>
                       <li>
-                        <FontAwesomeIcon className="fa" icon={faVoteYea} />
+                        <FontAwesomeIcon
+                          // onClick={onClick}
+                          className="fa"
+                          icon={faVoteYea}
+                        />
                         <span>18</span>
                       </li>
                     </ul>

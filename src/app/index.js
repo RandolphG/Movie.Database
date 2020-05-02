@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./index.scss";
 import { animated, useSpring } from "react-spring";
-import { fetchMovie } from "./_redux/actions/fetchData";
-import { useDispatch, useSelector } from "react-redux";
+import { fetchDetails, fetchMovie } from "./_redux/actions/fetchData";
+import { useSelector } from "react-redux";
 import { Container } from "./Container";
 import { useSlider } from "./UseSlider";
 import { Button } from "./Button";
@@ -25,13 +25,12 @@ Container.defaultProps = {
  */
 const Screen = () => {
   const results = useSelector((state) => state.movies.results);
+  const details = useSelector((state) => state.movies.details);
   const [current, setCurrent] = useState(0);
   const [isOpened, setIsOpened] = useState(false);
   const ref = useRef();
-  // redux
-  const dispatch = useDispatch();
-  const getData = () => dispatch(fetchMovie);
-  // slider
+
+  // // slider
   const slider = useSlider({
     data: results,
     onChange: setCurrent,
@@ -77,16 +76,22 @@ const Screen = () => {
 
   // lifecycle hook
   useEffect(() => {
-    getData();
-  }, []);
+    fetchMovie();
+    fetchDetails(results[current].id);
+  }, [current]);
 
   if (!results) {
     return <div>Loading...</div>;
   }
 
   const data = results[current];
-  console.log(current, results[current]);
-  console.log(current, results[current].id);
+  console.log(
+    `------ current index[${current}] ------\n`,
+    `results : `,
+    results[current],
+    `details : `,
+    details
+  );
 
   return (
     <section className="events-screen">
