@@ -2,7 +2,7 @@
 
 In the project directory, you can run:
 
-![Movie App](https://giphy.com/gifs/reactjs-motion-design-UX4Txy1WUxIlzfdAM5)
+![Movie App](https://gph.is/g/aRMYeBN)
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
