@@ -1,23 +1,16 @@
-@import "image";
-
 
 * {
   box-sizing: border-box;
 }
 
+
 //noinspection CssInvalidFunction
 html,
 body {
-  background: rgb(150, 150, 150);
-  background-image: -moz-radial-gradient(center, ellipse, cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(150, 150, 150, 1)), color-stop(100%, rgba(89, 89, 89, 1)));
-  background-image: -webkit-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
-  background: -o-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
-  background: -ms-radial-gradient(center, ellipse cover, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
-  //background: radial-gradient(ellipse at center, rgba(150, 150, 150, 1) 0%, rgba(89, 89, 89, 1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#969696', endColorstr = '#595959', GradientType = 1);
+  //background: linear-gradient( 45deg, #636F85, #6960A0);  background: transparent;
+  background: #58585d;
+  //background: linear-gradient(45deg to right,#FFF,#F2d,#3f1);
   font-family: monospace;
-  font-size: 1rem;
   overscroll-behavior-y: contain;
   overflow: hidden;
   margin: 0;
@@ -44,8 +37,7 @@ button {
 
 //noinspection CssInvalidFunction
 .app-layout {
-  border-radius: 6px;
-  background:transparent;
+  background: transparent;
   font-family: "Century Gothic", serif;
   width: 100%;
   height: 100%;
@@ -95,14 +87,13 @@ button {
 
   /* -- IMAGE BACKGROUND ----------------------------------------------------*/
 .slider__inner {
-  //background-color: #c0392b;
   background-size: cover;
   box-shadow: none;
   background-repeat: no-repeat;
   background-position: center ;
   width: 100%;
   height: 100%;
-  //will-change: box-shadow;
+  will-change: box-shadow;
   border-radius: 10px;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
@@ -183,13 +174,12 @@ button {
 }
 
 .header__item {
-  //background: #5c7cfa;
   width: 100%;
 }
 
 // -- LEFT SIDE TOP --//
 .header__title {
-  //background: #00ffc8;
+  color:white;
   font-size: 1.3rem;
   margin-top: 0;
   margin-bottom: 0;
@@ -211,6 +201,7 @@ button {
 
 // -- BOTTOM ROW OF HEADER --//
 .header__subtitle {
+  color:white;
   font-family: monospace;
   font-size: 1.5rem;
   line-height: 10px;
@@ -227,6 +218,7 @@ button {
 }
 
 .footer {
+  color: white;
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
@@ -270,11 +262,82 @@ button {
 }
 // -- TOP NAV & BUTTON --//
 .nav-bar__back {
-  //background: #1da1f2;
   color: white;
   padding-left: 16px;
   font-size: 1rem;
   line-height: 1;
-  //display: flex;
-  //align-items: baseline;
 }
+
+
+/*-----------------------------BACKGROUND------------------------------------*/
+
+box {
+  width: 600px;
+  height: 600px;
+  border-radius: 5px;
+  box-shadow: 0 2px 30px rgba(black, .2);
+  background: lighten(#1c1c1b, 10%);
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.wave {
+  opacity: .4;
+  position: absolute;
+  top: 3%;
+  left: 50%;
+  background: linear-gradient(to bottom, rgba(#000000, 1), rgba(#a2a2a2, .3));
+  width: 900px;
+  height: 900px;
+  margin-left: -250px;
+  margin-top: -250px;
+  transform-origin: 50% 48%;
+  border-radius: 43%;
+  animation: drift 9000ms infinite linear;
+}
+
+.wave.-three {
+  animation: drift 9000ms infinite linear;
+}
+
+.wave.-two {
+  animation: drift 9000ms infinite linear;
+  opacity: .1;
+  background: #a2a2a2;
+}
+
+.box:after {
+  content: '';
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(#c8c8c8, 1), rgba(#7a7a7a, 0) 80%, rgba(#565656, .5));
+  z-index: 11;
+  transform: translate3d(0, 0, 0);
+}
+
+.title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  line-height: 300px;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  color: white;
+  text-transform: uppercase;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: .4em;
+  font-size: 24px;
+  text-shadow: 0 1px 0 rgba(black, .1);
+  text-indent: .3em;
+}
+@keyframes drift {
+  from { transform: rotate(0deg); }
+  from { transform: rotate(360deg); }
+}
+

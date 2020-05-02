@@ -12,7 +12,7 @@ import { Slider } from "./Slider";
 import { ScreenModal } from "./ScreenModal";
 import { ScreenModalContent } from "./ScreenModalContent";
 import { Footer } from "./Footer";
-// import Cube from "./_addons/cube";
+import "./image.scss";
 
 Container.defaultProps = {
   as: "div",
@@ -86,6 +86,7 @@ const Screen = () => {
 
   const data = results[current];
   console.log(current, results[current]);
+  console.log(current, results[current].id);
 
   return (
     <section className="events-screen">
@@ -124,7 +125,11 @@ const Screen = () => {
  * @constructor
  */
 const AppLayout = ({ children }) => {
-  return <div className="app-layout">{children}</div>;
+  return (
+    <div>
+      <div className="app-layout">{children}</div>
+    </div>
+  );
 };
 
 /**

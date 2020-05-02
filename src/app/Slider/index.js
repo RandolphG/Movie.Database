@@ -1,20 +1,10 @@
 import { animated } from "react-spring";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faComment,
-  faHeart,
-  faBookmark,
-} from "@fortawesome/free-solid-svg-icons";
-
-const weekday = new Array(7);
-weekday[0] = "Sunday";
-weekday[1] = "Monday";
-weekday[2] = "Tuesday";
-weekday[3] = "Wednesday";
-weekday[4] = "Thursday";
-weekday[5] = "Friday";
-weekday[6] = "Saturday";
+import { faFilm, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faVoteYea } from "@fortawesome/free-solid-svg-icons/faVoteYea";
+import { fetchDetails } from "../_redux/actions/fetchData";
+import { useDispatch } from "react-redux";
 
 const R = require("ramda");
 
@@ -27,7 +17,22 @@ const R = require("ramda");
  */
 export const Slider = ({ slider, data }) => {
   const imgUri = `https://image.tmdb.org/t/p/w500`;
+  const [details, setDetails] = useState("");
   const { map, ref } = slider;
+  const dispatch = useDispatch();
+  const getDetails = (movieID) => dispatch(fetchDetails);
+
+  const query = (movieID) => {
+    setDetails(movieID);
+    console.log(`the details are : `, details);
+    getDetails(null, details);
+  };
+
+  useEffect(() => {
+    setDetails(data.id);
+    // console.log(`the details are : `, details);
+  }, [data.id, details]);
+
   return (
     <div className="slider" ref={ref}>
       <div className="slider__container">
@@ -40,14 +45,16 @@ export const Slider = ({ slider, data }) => {
               // onClick={onClick}
               {...root}
             >
-              <animated.div className="slider__inner" {...inner}>
+              <animated.div className="slider__inner">
                 <div className="carousel-box card">
                   <div
+                    onClick={(e) => query(e.target.dataset.id)}
+                    data-id={data.id}
                     className="wrapper"
                     style={{
-                      backgroundImage: `url(${imgUri}${R.path(["poster_path"])(
+                      background: `url(${imgUri}${R.path(["poster_path"])(
                         item
-                      )})`,
+                      )}) 20% 1% / cover no-repeat`,
                     }}
                   >
                     <div className="date">
@@ -55,39 +62,29 @@ export const Slider = ({ slider, data }) => {
                       <span className="month">Aug</span>
                       <span className="year">2016</span>
                     </div>
+                    <ul className="rate-content">
+                      <li className="icon">
+                        <FontAwesomeIcon className="fa" icon={faFilm} />
+                        <span>20</span>
+                      </li>
+                      <li>
+                        <FontAwesomeIcon className="fa" icon={faStar} />
+                        <span>{data.vote_average}</span>
+                      </li>
+                      <li>
+                        <FontAwesomeIcon className="fa" icon={faVoteYea} />
+                        <span>18</span>
+                      </li>
+                    </ul>
                     <div className="data">
                       <div className="content">
-                        <span className="author">NAME</span>
-                        <h1 className="title">
-                          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                          <a href="#">{data.title}</a>
-                        </h1>
+                        <span className="author">Director</span>
+                        <h1 className="title">{data.title}</h1>
                         <p className="text">{data.overview}</p>
                         <label htmlFor="show-menu" className="menu-button">
                           <span />
                         </label>
                       </div>
-                      {/*<input type="checkbox" id="show-menu" />*/}
-                      <ul className="menu-content">
-                        <li>
-                          <a href="#">
-                            <FontAwesomeIcon icon={faBookmark} />
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <FontAwesomeIcon icon={faHeart} />
-                            <span>47</span>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <FontAwesomeIcon icon={faComment} />
-
-                            <span>8</span>
-                          </a>
-                        </li>
-                      </ul>
                     </div>
                   </div>
                 </div>

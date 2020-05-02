@@ -6,6 +6,4 @@ import React from "react";
  * @returns {*}
  * @constructor
  */
-export const HeaderDate = ({ data }) => (
-  <time className="header__date">{data.release_date}</time>
-);
+export const HeaderDate = ({ data }) => <time className="header__date" />;
