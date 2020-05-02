@@ -2,7 +2,7 @@
 
 In the project directory, you can run:
 
-![Movie App](https://gph.is/g/aRMYeBN)
+![Movie App](https://media.giphy.com/media/UX4Txy1WUxIlzfdAM5/giphy.gif)
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
