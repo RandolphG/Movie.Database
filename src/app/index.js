@@ -24,7 +24,7 @@ Container.defaultProps = {
  * @constructor
  */
 const Screen = () => {
-  const results = useSelector((state) => state.movies.results);
+  const results = useSelector((state) => state.movies.moviesinfo.results);
   const details = useSelector((state) => state.movies.details);
   const [current, setCurrent] = useState(0);
   const [isOpened, setIsOpened] = useState(false);
@@ -112,7 +112,7 @@ const Screen = () => {
       </Container>
       <Header data={results} index={current} as={HeaderItem} />
       <div className="events-screen__slider">
-        <Slider data={data} slider={slider} />
+        <Slider data={data} detials={details} slider={slider} />
       </div>
       <ScreenModal onClose={onCloseClick} isOpen={isOpened}>
         <ScreenModalContent key={data.id} data={data} />

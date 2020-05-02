@@ -1,5 +1,5 @@
 import { animated } from "react-spring";
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilm, faStar } from "@fortawesome/free-solid-svg-icons";
 import { faVoteYea } from "@fortawesome/free-solid-svg-icons/faVoteYea";
@@ -11,10 +11,11 @@ const R = require("ramda");
  *
  * @param slider
  * @param data
+ * @param details
  * @returns {*}
  * @constructor
  */
-export const Slider = ({ slider, data }) => {
+export const Slider = ({ slider, data, details }) => {
   const imgUri = `https://image.tmdb.org/t/p/w500`;
   const { map, ref } = slider;
 
@@ -66,7 +67,9 @@ export const Slider = ({ slider, data }) => {
                     </ul>
                     <div className="data">
                       <div className="content">
-                        <span className="author">Director</span>
+                        <span className="author">
+                          runtime : {details && details.runtime}min
+                        </span>
                         <h1 className="title">{data.title}</h1>
                         <p className="text">{data.overview}</p>
                         <label htmlFor="show-menu" className="menu-button">

@@ -6,7 +6,6 @@ const dispatch = store.dispatch;
  */
 export function fetchMovie() {
   const FETCH_RESULTS = `FETCH_RESULTS`;
-  const FETCH_DATA = `FETCH_DATA`;
   const baseUrl = `https://api.themoviedb.org/3/discover/movie`;
   const sort = `popularity.desc`;
   const language = `en-US`;
@@ -23,13 +22,13 @@ export function fetchMovie() {
       return dispatch({ type: FETCH_RESULTS, payload: data.results });
     });
 
-  fetch(url)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      return dispatch({ type: FETCH_DATA, payload: data });
-    });
+  // fetch(url)
+  //   .then((response) => {
+  //     return response.json();
+  //   })
+  //   .then((data) => {
+  //     return dispatch({ type: FETCH_DATA, payload: data });
+  //   });
 }
 
 /**
