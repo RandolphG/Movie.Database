@@ -1,13 +1,28 @@
-## Electron React Starter
+# Movie App
 
-In the project directory, you can run:
+![Movie App](https://github.com/RandolphG/the-move-database-app/blob/master/public/_movie-database.gif?raw=true)
 
-![Movie App](https://github.com/RandolphG/the-move-database-app/blob/master/src/giphy.gif)
+## Movie App
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Installation process :
 
-[Adding script tag to React/JSX](https://stackoverflow.com/questions/34424845/adding-script-tag-to-react-jsx)
+- clone repo
+- navigate to project folder
+- install all dependencies with npm
+- run with npm
 
-[How to update a value of a nested object in a reducer?
-](https://stackoverflow.com/questions/40096036/how-to-update-a-value-of-a-nested-object-in-a-reducer) 
+
+```bash
+$ git clone https://github.com/RandolphG/the-move-database-app.git
+$ cd project
+$ npm i
+$ npm run electron
+```
+## Features
+- framer motion
+- classnames
+- node sass
+- redux
+- react spring
+- react use gesture
+- font awesome
